@@ -14,3 +14,6 @@ Opis struktury sieci (do umieszczenia w README.md):
       • from = z jakiego węzła
       • to = do jakiego węzła
       • value = wartość, która w zależności od dziedziny biznesowej może oznaczać np. dystans, przepustowość, itd.
+
+
+![Build status](https://travis-ci.org/MarcinKrz1/NetworkAnalyzer.svg?branch=master)
