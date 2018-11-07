@@ -1,0 +1,5 @@
+networkanalyzer\logic\Connection.class
+networkanalyzer\logic\Node.class
+networkanalyzer\rest\NetworkAnalyzerController.class
+networkanalyzer\app\NetworkAnalyzerApplication.class
+networkanalyzer\logic\CalculatorPaths.class
