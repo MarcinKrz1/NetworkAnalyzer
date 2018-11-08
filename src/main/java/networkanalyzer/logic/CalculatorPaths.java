@@ -2,7 +2,11 @@ package networkanalyzer.logic;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.http.HttpMessage;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+import javax.management.RuntimeErrorException;
 import java.util.List;
 import java.util.ArrayList;
 import java.lang.Integer;
@@ -11,6 +15,13 @@ import java.util.Stack;
 
 class vc{
     public int v,c;
+}
+
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+class HTTPError extends RuntimeException {
+    public HTTPError(String message) {
+        super(message);
+    }
 }
 
 @Getter @Setter
@@ -46,10 +57,8 @@ public class CalculatorPaths {
             }
         }
 
-        if(!findEntry||!findExit){
-            System.out.println("error brak entry lub exit");
-            return null;//throw erro
-        }
+        if(!findEntry||!findExit)
+            throw new HTTPError("No entry or exit node!");
 
         for(Connection c:connections) {
             boolean findv1=false,findv2=false;
@@ -71,10 +80,7 @@ public class CalculatorPaths {
                 tmpvc.c = c.getValue();
                 neighbour[i1].add(tmpvc);
             }
-            else {
-                System.out.println("doesnt exist vertives in node list");
-                return null;
-            }
+            else throw new HTTPError("Doesn't exists vertex in node list!");
         }
 
         //rebuild network
@@ -127,10 +133,9 @@ public class CalculatorPaths {
             result.push(prev_vertices[idx]);
             idx = prev_vertices[idx];
         }
-        if(result.size()<2){
-            System.out.println("brak sciezki");//error
-            return null;
-        }
+        if(result.size()<2)
+            throw new HTTPError("Path doesnt't exists!");
+
         while(!result.empty()) {
             int vi = result.pop();
             if(vi<vertices){
