@@ -8,7 +8,11 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Connection {
-    private Node from;
-    private Node to;
-    private Float value;
+    private int from;
+    private int to;
+    private int value;
+
+    public int getValue() {return value;}
+    public int getFrom() {return from;}
+    public int getTo() {return to;}
 }
