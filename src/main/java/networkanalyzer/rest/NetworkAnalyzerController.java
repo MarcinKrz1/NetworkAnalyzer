@@ -34,9 +34,8 @@ public class NetworkAnalyzerController {
         return ResponseEntity.ok(connections);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/path")
-    public void Solution(){
-        calculatorPaths.BFS_path();
-
+    @RequestMapping(method = RequestMethod.POST, value = "/bfs")
+    public ResponseEntity<List<Node>> Solution(){
+        return ResponseEntity.ok(calculatorPaths.BFS_path());
     }
 }
