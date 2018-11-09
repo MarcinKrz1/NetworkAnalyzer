@@ -20,4 +20,6 @@ public class Node {
     private String type;
     // private List<Connection> incoming;
     // private List<Connection> outgoing;
+    public int getId() {return id;}
+    public String getType() {return type;}
 }
