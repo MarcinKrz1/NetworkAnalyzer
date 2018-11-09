@@ -46,12 +46,12 @@ public class CalculatorPaths {
             Node tmpNode = nodes.get(i);
             verMap[i] = tmpNode.getId();
             if (tmpNode.getType().equals("entry")) {
-                if(findEntry)return null;
+                if(findEntry)throw new HTTPError("Find 2 entry node!");
                 findEntry = true;
                 entry = i;
             }
             if (tmpNode.getType().equals("exit")) {
-                if(findExit)return null;
+                if(findExit)throw new HTTPError("Find 2 exit node!");
                 findExit = true;
                 exit = i;
             }
