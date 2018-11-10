@@ -57,31 +57,14 @@ public class CalculatorPaths {
 
     public List<Node> BFS_path() {
         ArrayList<Node>bfs = new ArrayList<Node>();
-        int sumCost = 0, vertices = nodes.size();//, entry=0, exit=0;
-        //boolean findEntry = false, findExit = false;
+        int sumCost = 0, vertices = nodes.size();
         for (Connection c : connections) sumCost += c.getValue();
-        //int verMap[] = new int[vertices];
 
         ArrayList<vc>[] neighbour = new ArrayList[vertices] ;
         for(int i=0;i<neighbour.length;i++)neighbour[i]= new ArrayList<vc>();
 
         ArrayList<Integer>[] neighbour2 = new ArrayList[vertices + sumCost] ;
         for(int i=0;i<neighbour2.length;i++)neighbour2[i]= new ArrayList<Integer>();
-
-        /*for (int i = 0; i < verMap.length; i++) {
-            Node tmpNode = nodes.get(i);
-            verMap[i] = tmpNode.getId();
-            if (tmpNode.getType().equals("entry")) {
-                if(findEntry)throw new HTTPError("Find 2 entry node!");
-                findEntry = true;
-                entry = i;
-            }
-            if (tmpNode.getType().equals("exit")) {
-                if(findExit)throw new HTTPError("Find 2 exit node!");
-                findExit = true;
-                exit = i;
-            }
-        }*/
 
         findEntryExitNode();
         if(!findEntry||!findExit)
