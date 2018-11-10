@@ -38,4 +38,9 @@ public class NetworkAnalyzerController {
     public ResponseEntity<List<Node>> Solution(){
         return ResponseEntity.ok(calculatorPaths.BFS_path());
     }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/greedy")
+    public ResponseEntity<List<Node>> Solution2(){
+        return ResponseEntity.ok(calculatorPaths.Greedy_algorithm());
+    }
 }
