@@ -33,11 +33,8 @@ public class CalculatorPaths {
         ArrayList<Node>bfs = new ArrayList<Node>();
         int sumCost = 0, vertices = nodes.size(), entry=0, exit=0;
         boolean findEntry = false, findExit = false;
-        for (Connection c : connections){
-            int cost = c.getValue();
-            if(cost<0)throw new HTTPError("Cost must be unsigned!");
-            sumCost += cost;
-        }
+        for (Connection c : connections)
+            if(c.getValue()<0)throw new HTTPError("Cost must be unsigned!");
         int verMap[] = new int[vertices];
 
         ArrayList<vc>[] neighbour = new ArrayList[vertices] ;
@@ -109,8 +106,9 @@ public class CalculatorPaths {
                         break;
                     }
                 }
-            child.addLast(v);
+            if(again)child.addLast(v);
         }
+
         //get solution
         Stack<Integer> result = new Stack<Integer>();
         int idx = exit;
@@ -122,12 +120,9 @@ public class CalculatorPaths {
         if(result.size()<2)
             throw new HTTPError("Path doesnt't exists!");
 
-        while(!result.empty()) {
-            int vi = result.pop();
-            if(vi<vertices){
-                bfs.add(nodes.get(vi));
-            }
-        }
+        while(!result.empty())
+            bfs.add(nodes.get(result.pop()));
+
         return bfs;
     }
 }
