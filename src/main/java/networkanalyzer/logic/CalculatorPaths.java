@@ -33,7 +33,11 @@ public class CalculatorPaths {
         ArrayList<Node>bfs = new ArrayList<Node>();
         int sumCost = 0, vertices = nodes.size(), entry=0, exit=0;
         boolean findEntry = false, findExit = false;
-        for (Connection c : connections) sumCost += c.getValue();
+        for (Connection c : connections){
+            int cost = c.getValue();
+            if(cost<0)throw new HTTPError("Cost must be unsigned!");
+            sumCost += cost;
+        }
         int verMap[] = new int[vertices];
 
         ArrayList<vc>[] neighbour = new ArrayList[vertices] ;
@@ -93,7 +97,7 @@ public class CalculatorPaths {
             boolean again=false;
             child.removeFirst();
             for(vc vn:neighbour[v])
-                if(vn.c>1){
+                if(vn.c>0){
                     again=true;
                     vn.c--;
                 }
