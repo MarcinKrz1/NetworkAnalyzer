@@ -57,14 +57,12 @@ public class CalculatorPaths {
 
     public List<Node> BFS_path() {
         ArrayList<Node>bfs = new ArrayList<Node>();
-        int sumCost = 0, vertices = nodes.size();
-        for (Connection c : connections) sumCost += c.getValue();
+        int vertices = nodes.size();
+        for (Connection c : connections)
+            if(c.getValue()<1) throw new HTTPError("Edge cost must be >=1");
 
         ArrayList<vc>[] neighbour = new ArrayList[vertices] ;
         for(int i=0;i<neighbour.length;i++)neighbour[i]= new ArrayList<vc>();
-
-        ArrayList<Integer>[] neighbour2 = new ArrayList[vertices + sumCost] ;
-        for(int i=0;i<neighbour2.length;i++)neighbour2[i]= new ArrayList<Integer>();
 
         findEntryExitNode();
         if(!findEntry||!findExit)
@@ -93,28 +91,8 @@ public class CalculatorPaths {
             else throw new HTTPError("Doesn't exists vertex in node list!");
         }
 
-        //rebuild network
-        int idx=vertices;
-        for(int i=0;i<vertices;i++){
-            for(vc vn:neighbour[i]){
-                if(vn.c>1){
-                    neighbour2[i].add(idx);
-                    vn.c--;
-                    while (vn.c>1){
-                        neighbour2[idx].add(idx+1);
-                        vn.c--;
-                        idx++;
-                    }
-                    neighbour2[idx].add(vn.v);
-                    idx++;
-                }else{
-                    neighbour2[i].add(vn.v);
-                }
-            }
-        }
-
         //bfs short algoruthm
-        int[] prev_vertices = new int[vertices+sumCost];
+        int[] prev_vertices = new int[vertices];
         for(int i=0;i<prev_vertices.length;i++)prev_vertices[i]=-1;
 
         LinkedList<Integer> child = new LinkedList<Integer>();
@@ -123,21 +101,27 @@ public class CalculatorPaths {
         boolean isLoop=true;
         while(!child.isEmpty()&&isLoop){
             int v=child.getFirst();
+            boolean again=false;
             child.removeFirst();
-            for(int vn:neighbour2[v])
-                if (prev_vertices[vn] == -1) {
-                    child.addLast(vn);
-                    prev_vertices[vn] = v;
-                    if (vn == exit) {
+            for(vc vn:neighbour[v])
+                if(vn.c>1){
+                    again=true;
+                    vn.c--;
+                }
+                else if (prev_vertices[vn.v] == -1) {
+                    child.addLast(vn.v);
+                    prev_vertices[vn.v] = v;
+                    if (vn.v == exit) {
                         isLoop = false;
                         break;
                     }
                 }
-            System.out.println(v);
+            if(again)child.addLast(v);
         }
+
         //get solution
         Stack<Integer> result = new Stack<Integer>();
-        idx = exit;
+        int idx = exit;
         result.push(idx);
         while (prev_vertices[idx]>-1){
             result.push(prev_vertices[idx]);
@@ -146,12 +130,9 @@ public class CalculatorPaths {
         if(result.size()<2)
             throw new HTTPError("Path doesnt't exists!");
 
-        while(!result.empty()) {
-            int vi = result.pop();
-            if(vi<vertices){
-                bfs.add(nodes.get(vi));
-            }
-        }
+        while(!result.empty())
+            bfs.add(nodes.get(result.pop()));
+
         return bfs;
     }
 
