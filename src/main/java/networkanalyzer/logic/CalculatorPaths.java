@@ -2,30 +2,18 @@ package networkanalyzer.logic;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpMessage;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
-import javax.management.RuntimeErrorException;
 import java.util.List;
 import java.util.ArrayList;
 import java.lang.Integer;
 import java.util.LinkedList;
 import java.util.Stack;
+import networkanalyzer.logic.HTTPError;
 
 class vc {
     public int v, c;
 }
 
-@Slf4j
-@ResponseStatus(value = HttpStatus.NOT_FOUND)
-class HTTPError extends RuntimeException {
-    public HTTPError(String message) {
-        super(message);
-        log.error(message);
-    }
-}
+
 
 @Getter
 @Setter
