@@ -7,16 +7,19 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
 
-@Validated
+/**
+ * klasa reprezentujaca wiercholek grafu
+ */
+//@Validated
 @Getter
 @Setter
 @ToString
 public class Node {
 
-    @NotNull(message = "musisz podac ID")
+    //@NotNull(message = "musisz podac ID")
     private Integer id;
     private String name;
-    @NotNull(message = "musisz podac type")
+    //@NotNull(message = "musisz podac type")
     private String type;
     // private List<Connection> incoming;
     // private List<Connection> outgoing;

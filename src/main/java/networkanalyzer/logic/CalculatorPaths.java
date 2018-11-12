@@ -9,12 +9,16 @@ import java.util.LinkedList;
 import java.util.Stack;
 import networkanalyzer.logic.HTTPError;
 
+/**
+ * struktura przechowujaca wierzchokek i koszt
+ */
 class vc {
     public int v, c;
 }
 
-
-
+/**
+ * klasa odpowiadajaca za przechowywanie wlasnosci sieci oraz wyliczanie najkrotszych sciezek metoda zachlanna oraz BFS
+ */
 @Getter
 @Setter
 public class CalculatorPaths {
@@ -25,6 +29,9 @@ public class CalculatorPaths {
     boolean findEntry, findExit;
     private int verMap[];
 
+    /**
+     * metoda znajdujaca wierzcholki entry i exit
+     **/
     private void findEntryExitNode() {
         verMap = new int[nodes.size()];
         findEntry = false;
@@ -47,6 +54,11 @@ public class CalculatorPaths {
         }
     }
 
+    /**
+     *
+     * metoda znajdujaca najkrotsza sciezke metoda BFS
+     * @return wynik w postacji identyfikatorow wierzcholkow oraz sumaryczny koszt najkrotszej sciezki w grafie
+     */
     public Result BFS_path() {
         ArrayList<Node> bfs = new ArrayList<Node>();
         int vertices = nodes.size();
@@ -142,7 +154,10 @@ public class CalculatorPaths {
         return resultr;
     }
 
-
+    /**
+     * metoda znajdujaca najkrotsza sciezke metoda BFS
+     * @return wynik w postacji identyfikatorow wierzcholkow oraz sumaryczny koszt najkrotszej sciezki w grafie
+     */
     public Result Greedy_algorithm() {
 
         boolean isExit = false;
