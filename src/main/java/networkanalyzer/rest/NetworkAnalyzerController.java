@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import networkanalyzer.logic.CalculatorPaths;
 import networkanalyzer.logic.Connection;
 import networkanalyzer.logic.Node;
+import networkanalyzer.logic.Result;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,12 +33,8 @@ public class NetworkAnalyzerController {
     }
 
     @GetMapping("/bfs")
-    public ResponseEntity<List<Node>> Solution() {
-        return ResponseEntity.ok(calculatorPaths.BFS_path());
-    }
+    public ResponseEntity<Result> Solution(){ return ResponseEntity.ok(calculatorPaths.BFS_path()); }
 
     @GetMapping("/greedy")
-    public ResponseEntity<List<Node>> Solution2() {
-        return ResponseEntity.ok(calculatorPaths.Greedy_algorithm());
-    }
+    public ResponseEntity<Result> Solution2(){ return ResponseEntity.ok(calculatorPaths.Greedy_algorithm()); }
 }
