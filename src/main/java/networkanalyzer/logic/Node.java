@@ -15,14 +15,24 @@ import javax.validation.constraints.NotNull;
 @Setter
 @ToString
 public class Node {
-
-    //@NotNull(message = "musisz podac ID")
+    /**
+     * unikalny identyfikator
+     */
     private Integer id;
+    /**
+     * opcjonalny tekst opisujący węzeł
+     */
     private String name;
-    //@NotNull(message = "musisz podac type")
+    /**
+     * typ wierzcholka: 'entry', 'exit', 'regular'
+     */
     private String type;
-    // private List<Connection> incoming;
-    // private List<Connection> outgoing;
-    public int getId() {return id;}
-    public String getType() {return type;}
+
+    public int getId() {
+        return id;
+    }
+
+    public String getType() {
+        return type;
+    }
 }

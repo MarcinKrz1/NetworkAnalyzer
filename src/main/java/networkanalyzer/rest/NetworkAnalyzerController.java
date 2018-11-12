@@ -21,9 +21,17 @@ import networkanalyzer.logic.HTTPError;
 @RestController
 @RequestMapping("")
 public class NetworkAnalyzerController {
+    /**
+     * zmienna 'bool' czy wyslano wierzcholki
+     */
     private boolean sendNodes=false;
+    /**
+     * zmienna 'bool' czy wyslano polaczenia
+     */
     private boolean sendConnections=false;
-
+    /**
+     * obiekt odpowiadajacy za przechowywanie wlasnosci sieci oraz wyliczanie najkrotszych sciezek metoda zachlanna oraz BFS
+     */
     private final CalculatorPaths calculatorPaths = new CalculatorPaths();
 
     /**

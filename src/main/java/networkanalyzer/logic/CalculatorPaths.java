@@ -22,11 +22,41 @@ class vc {
 @Getter
 @Setter
 public class CalculatorPaths {
+    /**
+     * lista wierzcholkow
+     */
     private List<Node> nodes;
+    /**
+     * lista polaczen
+     */
     private List<Connection> connections;
-    private Node entryNode, exitNode;
-    private int entry = 0, exit = 0;
-    boolean findEntry, findExit;
+    /**
+     * wierzcholek o typie 'entry'
+     */
+    private Node entryNode;
+    /**
+     * wierzchołek o typie 'exit'
+     */
+    private Node exitNode;
+    /**
+     * indeks wierzcholka 'entry' na liscie wierzcholkow
+     */
+    private int entry = 0;
+    /**
+     * indeks wierzcholka 'exit' na liscie wierzcholkow
+     */
+    private int exit = 0;
+    /**
+     * zmienna czy znaleziono wierzcholek 'entry'
+     */
+    private boolean findEntry;
+    /**
+     * zmienna czy znaleziono wierzcholek 'exit'
+     */
+    private boolean findExit;
+    /**
+     * tablica przechowujaca id wierzcholka o podanym indeksie na liscie wierzcholkow
+     */
     private int verMap[];
 
     /**
