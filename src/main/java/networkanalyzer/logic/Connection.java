@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * klasa reprezentujaca polaczenie miedzy wierzcholkami
+ */
 @Getter
 @Setter
 @ToString

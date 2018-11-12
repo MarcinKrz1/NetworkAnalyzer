@@ -5,6 +5,9 @@ import lombok.ToString;
 
 @Getter
 @ToString
+/**
+ * klasa reprezentujaca format odpowiedzi wykonania algorytmu znajdowania najkrotszej sciezki
+ */
 public class Result {
     private int[] node;
     private int resultSum;
