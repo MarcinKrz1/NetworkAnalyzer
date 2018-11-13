@@ -2,11 +2,13 @@ package networkanalyzer.logic;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.lang.Integer;
 import java.util.LinkedList;
 import java.util.Stack;
+
 import networkanalyzer.logic.HTTPError;
 
 /**
@@ -85,8 +87,8 @@ public class CalculatorPaths {
     }
 
     /**
-     *
      * metoda znajdujaca najkrotsza sciezke metoda BFS
+     *
      * @return wynik w postacji identyfikatorow wierzcholkow oraz sumaryczny koszt najkrotszej sciezki w grafie
      */
     public Result BFS_path() {
@@ -186,6 +188,7 @@ public class CalculatorPaths {
 
     /**
      * metoda znajdujaca najkrotsza sciezke metoda BFS
+     *
      * @return wynik w postacji identyfikatorow wierzcholkow oraz sumaryczny koszt najkrotszej sciezki w grafie
      */
     public Result Greedy_algorithm() {
@@ -211,11 +214,11 @@ public class CalculatorPaths {
 
         result.add(entryNode);
         while (!isExit) {
-            if (!pomConnections[result.get(result.size() - 1).getId() - 1].isEmpty()) {
-                minVal = pomConnections[result.get(result.size() - 1).getId() - 1].get(0).getValue();
-                minId = pomConnections[result.get(result.size() - 1).getId() - 1].get(0).getTo();
+            if (!pomConnections[nodes.indexOf(result.get(result.size() - 1))].isEmpty()) {
+                minVal = pomConnections[nodes.indexOf(result.get(result.size() - 1))].get(0).getValue();
+                minId = pomConnections[nodes.indexOf(result.get(result.size() - 1))].get(0).getTo();
 
-                for (Connection c : pomConnections[result.get(result.size() - 1).getId() - 1]) {
+                for (Connection c : pomConnections[nodes.indexOf(result.get(result.size() - 1))]) {
                     if (minVal > c.getValue()) {//get element with the smallest value and number id
                         minVal = c.getValue();
                         minId = c.getTo();
@@ -231,10 +234,10 @@ public class CalculatorPaths {
                     result.add(nodes.get(element));
 
                 } else if (result.contains(nodes.get(element))) {
-                    List<Connection> temp = new ArrayList<Connection>(pomConnections[result.get(result.size() - 1).getId() - 1]);
+                    List<Connection> temp = new ArrayList<Connection>(pomConnections[nodes.indexOf(result.get(result.size() - 1))]);
                     for (Connection c : temp) {
                         if (c.getTo() == minId) {
-                            pomConnections[result.get(result.size() - 1).getId() - 1].remove(c);
+                            pomConnections[nodes.indexOf(result.get(result.size() - 1))].remove(c);
                         }
                     }
                 } else {
@@ -247,10 +250,10 @@ public class CalculatorPaths {
                 }
             } else if (!result.get(result.size() - 1).getType().equals("entry")) {
 
-                List<Connection> temp = new ArrayList<Connection>(pomConnections[result.get(result.size() - 2).getId() - 1]);
+                List<Connection> temp = new ArrayList<Connection>(pomConnections[nodes.indexOf(result.get(result.size() - 2))]);
                 for (Connection c : temp) {
                     if (c.getTo() == result.get(result.size() - 1).getId()) {
-                        pomConnections[result.get(result.size() - 2).getId() - 1].remove(c);
+                        pomConnections[nodes.indexOf(result.get(result.size() - 2))].remove(c);
                     }
                 }
                 result.remove(result.size() - 1);
@@ -259,7 +262,6 @@ public class CalculatorPaths {
                 throw new HTTPError("Path doesnt't exists!");
             }
         }
-
         resultr.setAmount(result.size());
         int i = 0;
         for (Node n : result) {
