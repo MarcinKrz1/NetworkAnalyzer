@@ -1,17 +1,15 @@
 package networkanalyzer.rest;
 
 import lombok.extern.slf4j.Slf4j;
-import networkanalyzer.logic.CalculatorPaths;
-import networkanalyzer.logic.Connection;
-import networkanalyzer.logic.Node;
-import networkanalyzer.logic.Result;
+import networkanalyzer.logic.*;
+import networkanalyzer.logic.algorithms.BfsSearch;
+import networkanalyzer.logic.algorithms.ContextSearch;
+import networkanalyzer.logic.algorithms.GreedySearch;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
-import networkanalyzer.logic.HTTPError;
 
 /**
  * controller ktorego zadaniem jest obsluga requestow wprowadzanych przez wlasciceli sieci
@@ -29,19 +27,18 @@ public class NetworkAnalyzerController {
      * zmienna 'bool' czy wyslano polaczenia
      */
     private boolean sendConnections=false;
-    /**
-     * obiekt odpowiadajacy za przechowywanie wlasnosci sieci oraz wyliczanie najkrotszych sciezek metoda zachlanna oraz BFS
-     */
-    private final CalculatorPaths calculatorPaths = new CalculatorPaths();
+
+
+    private final ContextSearch contextSearch = new ContextSearch();
 
     /**
      * metoda obslugujaca request POST ktory powinien przekazac liste wierzcholkow grafu
      * @param nodes body requesta w ktorym znajduje sie lista wierzcholkow
      * @return zwracana jest lista obiektow typu Node
      */
-    @PostMapping("/nodes")
+    @PutMapping("/nodes")
     public ResponseEntity<List<Node>> postNodes(@Valid @RequestBody List<Node> nodes) {
-        calculatorPaths.setNodes(nodes);
+        contextSearch.setNodes(nodes);
         log.info("Created {}", nodes.toString());
         sendNodes=true;
         return ResponseEntity.ok(nodes);
@@ -52,9 +49,9 @@ public class NetworkAnalyzerController {
      * @param connections body requesta w ktorym znajduje sie lista polaczen
      * @return zwracana jest lista obiektow typu Connection
      */
-    @PostMapping("/connections")
+    @PutMapping("/connections")
     public ResponseEntity<List<Connection>> putConnections(@RequestBody List<Connection> connections) {
-        calculatorPaths.setConnections(connections);
+        contextSearch.setConnections(connections);
         log.info("Created {}", connections.toString());
         sendConnections=true;
         return ResponseEntity.ok(connections);
@@ -67,7 +64,8 @@ public class NetworkAnalyzerController {
     @GetMapping("/bfs")
     public ResponseEntity<Result> Solution(){
         if(!sendNodes||!sendConnections)throw new HTTPError("First send nodes and connections!");
-        return ResponseEntity.ok(calculatorPaths.BFS_path());
+        contextSearch.setStrategySearch(new BfsSearch());
+        return ResponseEntity.ok(contextSearch.doSearch());
     }
 
     /**
@@ -77,6 +75,7 @@ public class NetworkAnalyzerController {
     @GetMapping("/greedy")
     public ResponseEntity<Result> Solution2(){
         if(!sendNodes||!sendConnections)throw new HTTPError("First send nodes and connections!");
-        return ResponseEntity.ok(calculatorPaths.Greedy_algorithm());
+        contextSearch.setStrategySearch(new GreedySearch());
+        return ResponseEntity.ok(contextSearch.doSearch());
     }
 }
