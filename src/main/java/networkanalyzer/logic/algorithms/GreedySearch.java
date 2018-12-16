@@ -10,11 +10,21 @@ import java.util.List;
 
 public class GreedySearch extends StrategySearch {
 
+    public GreedySearch(){}
+    /**
+     * constructor which set list of nodes and connections, which are need to test
+     * @param nodes
+     * @param connections
+     */
+    public GreedySearch(List<Node> nodes,List<Connection> connections){
+        this.nodes=nodes;
+        this.connections=connections;
+    }
 
     /**
-     * metoda znajdujaca najkrotsza sciezke metoda BFS
+     * method wchich find path in a greedy way
      *
-     * @return wynik w postacji identyfikatorow wierzcholkow oraz sumaryczny koszt najkrotszej sciezki w grafie
+     * @return result as a vertex id and summary path cost in graph
      */
 
     public Result executeSearch() {
