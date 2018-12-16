@@ -117,13 +117,11 @@ public class BfsSearch extends StrategySearch{
         resultr.setAmount(bfs.size());
         int i = 0;
         for (Node n : bfs) {
-            System.out.println("n:"+n.getId());
             resultr.setNode(i, n.getId());
             if (bfs.indexOf(n) != (bfs.size() - 1))
                 for (Connection c : connections) {
                     if (c.getFrom() == n.getId() && c.getTo() == bfs.get(bfs.indexOf(n) + 1).getId())
                         sum += c.getValue();
-                        System.out.println("v:"+c.getValue());
                 }
             i++;
         }

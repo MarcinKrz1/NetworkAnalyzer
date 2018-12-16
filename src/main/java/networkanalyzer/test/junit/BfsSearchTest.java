@@ -144,7 +144,6 @@ public class BfsSearchTest {
         newConn(4,2,3);
         bs = new BfsSearch(nodes,connections);
         Result r = bs.executeSearch();
-        System.out.print(r.getResultSum());
         assertTrue(r.getResultSum()==6);
     }
 
@@ -167,7 +166,6 @@ public class BfsSearchTest {
         newConn(4,2,3);
         bs = new BfsSearch(nodes,connections);
         Result r = bs.executeSearch();
-        System.out.print(r.getResultSum());
         assertTrue(r.getResultSum()==7);
     }
 }
