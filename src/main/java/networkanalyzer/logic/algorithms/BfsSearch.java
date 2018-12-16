@@ -7,6 +7,7 @@ import networkanalyzer.logic.Result;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -18,6 +19,16 @@ class vc {
 
 public class BfsSearch extends StrategySearch{
 
+    public BfsSearch(){}
+    /**
+     * konstuktor ustawienie listy nodow i connections, potrzebne do testow
+     * @param nodes
+     * @param connections
+     */
+    public BfsSearch(List<Node> nodes,List<Connection> connections){
+        this.nodes=nodes;
+        this.connections=connections;
+    }
 
     /**
      * metoda znajdujaca najkrotsza sciezke metoda BFS
