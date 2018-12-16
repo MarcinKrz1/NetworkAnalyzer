@@ -147,4 +147,27 @@ public class BfsSearchTest {
         System.out.print(r.getResultSum());
         assertTrue(r.getResultSum()==6);
     }
+
+    @Test
+    public void test8(){
+        newNode(1,"entry");
+        newNode(2,"regular");
+        newNode(3,"regular");
+        newNode(4,"exit");
+        newNode(5,"regular");
+        newNode(6,"regular");
+        newConn(1,5,3);
+        newConn(5,6,3);
+        newConn(6,4,1);
+        newConn(6,1,6);
+        newConn(1,2,3);
+        newConn(2,3,3);
+        newConn(3,6,1);
+        newConn(3,4,3);
+        newConn(4,2,3);
+        bs = new BfsSearch(nodes,connections);
+        Result r = bs.executeSearch();
+        System.out.print(r.getResultSum());
+        assertTrue(r.getResultSum()==7);
+    }
 }
