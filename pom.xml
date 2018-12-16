@@ -50,11 +50,6 @@
             <artifactId>json-path</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>pl.put.poznan</groupId>
-            <artifactId>network-analyzer</artifactId>
-            <version>1.0</version>
-        </dependency>
 
         <dependency>
             <groupId>junit</groupId>
