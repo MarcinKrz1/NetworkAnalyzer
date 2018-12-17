@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import networkanalyzer.logic.*;
 import networkanalyzer.logic.algorithms.BfsSearch;
 import networkanalyzer.logic.algorithms.ContextSearch;
+import networkanalyzer.logic.algorithms.DfsSearch;
 import networkanalyzer.logic.algorithms.GreedySearch;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -78,4 +79,16 @@ public class NetworkAnalyzerController {
         contextSearch.setStrategySearch(new GreedySearch());
         return ResponseEntity.ok(contextSearch.doSearch());
     }
+
+    /**
+     * metoda obslugujaca request GET zwracajac rozwiazanie najkrotszej sciezki grafu metoda metoda DFS
+     * @return zwracane jest rozwiazanie w postacji listy id oraz sumaryczny koszt znalezionej sciezki
+     */
+    @GetMapping("/dfs")
+    public ResponseEntity<Result> Solution3(){
+        if(!sendNodes||!sendConnections)throw new HTTPError("First send nodes and connections!");
+        contextSearch.setStrategySearch(new DfsSearch());
+        return ResponseEntity.ok(contextSearch.doSearch());
+    }
+
 }
