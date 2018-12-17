@@ -15,9 +15,9 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class DfsSearchTest {
+public class DfsSearchTest {
 
-    DfsSearchTest dfs;
+    DfsSearch dfs;
     List<Node> nodes;
     List<Connection> connections;
 
@@ -39,7 +39,7 @@ class DfsSearchTest {
     @Before
     public void init() {
         nodes = new ArrayList<Node>();
-        connections = new ArrayList<Node>();
+        connections = new ArrayList<Connection>();
     }
 
     @Test(expected = HTTPError.class)
@@ -108,7 +108,7 @@ class DfsSearchTest {
     }
 
     @Test
-    public void test5() {
+    public void test6() {
         newNode(1, "entry");
         newNode(2, "regular");
         newNode(3, "regular");
@@ -134,7 +134,7 @@ class DfsSearchTest {
     }
 
     @Test
-    public void test6(){
+    public void test7(){
         newNode(1,"entry");
         newNode(2,"regular");
         newNode(3,"regular");
@@ -150,8 +150,8 @@ class DfsSearchTest {
         newConn(3,6,1);
         newConn(3,4,3);
         newConn(4,2,3);
-        bs = new BfsSearch(nodes,connections);
-        Result r = bs.executeSearch();
+        dfs = new DfsSearch(nodes,connections);
+        Result r = dfs.executeSearch();
         assertTrue(r.getResultSum()==7);
         assertTrue(r.getNode()[0] == 1);
         assertTrue(r.getNode()[1] == 5);
