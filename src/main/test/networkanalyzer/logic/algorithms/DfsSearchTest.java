@@ -88,8 +88,8 @@ public class DfsSearchTest {
         newNode(3, "regular");
         newNode(4, "exit");
         newConn(1,2,2);
-        newConn(2,34,5);
-        newConn(3,4,1);
+        newConn(2,3,5);
+        newConn(3,4,0);
         dfs = new DfsSearch(nodes,connections);
         Result r = dfs.executeSearch();
     }
