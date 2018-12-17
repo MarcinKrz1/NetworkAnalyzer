@@ -16,6 +16,24 @@ public class DfsSearch extends StrategySearch{
     private int[] visited;
 
 
+
+    public DfsSearch() {}
+
+    /**
+     * konstuktor ustawienie listy nodow i connections, potrzebne do testow
+     * @param nodes
+     * @param connections
+     */
+    public DfsSearch(List<Node> nodes,List<Connection> connections){
+        this.nodes=nodes;
+        this.connections=connections;
+    }
+
+    /**
+     * metoda znajdujaca najkrotsza sciezke metoda DFS
+     *
+     * @return wynik w postacji identyfikatorow wierzcholkow oraz sumaryczny koszt najkrotszej sciezki w grafie
+     */
     public Result executeSearch() {
 
         for (Connection c : connections)
@@ -53,11 +71,14 @@ public class DfsSearch extends StrategySearch{
 
         dfs(entryNode.getId());
 
-        /*boolean end = false;
-        while(!end) {
 
-            for(int i)
-        }*/
+        boolean con = false;
+        for (Integer r : result) {
+            if (r == exitNode.getId()) {con = true;}
+        }
+        if(!con) {throw new HTTPError("Path doesnt't exists!");}
+
+
         Result finalRes = new Result();
         finalRes.setAmount(result.size());
         for (int i=0 ; i<result.size() ; i++) {
@@ -69,7 +90,7 @@ public class DfsSearch extends StrategySearch{
     }
 
     private void dfs(int idNode) {
-        System.out.println(idNode);
+        //System.out.println(idNode);
         if (idNode == exitNode.getId()) {
             if (tempSum < sum) {
                 result.clear();
@@ -78,7 +99,6 @@ public class DfsSearch extends StrategySearch{
             }
         }
         else {
-            //for (int i=0 ; i<neighbour[idNode].size() ; i++) {
             for (vc next : neighbour[idNode]) {
                 if(visited[next.v] == 0) {
                     tempSum += next.c;
@@ -93,6 +113,9 @@ public class DfsSearch extends StrategySearch{
         }
     }
 
+    /**
+     * struktura przechowujaca wierzchokek i koszt
+     */
     class vc {
         int v, c;
     }
