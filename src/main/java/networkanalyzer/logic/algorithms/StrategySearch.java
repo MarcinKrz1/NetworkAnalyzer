@@ -9,6 +9,10 @@ import networkanalyzer.logic.Result;
 
 import java.util.List;
 
+/**
+ * klasa abstrakcyjna, dziedzicza z niej algorytmy przeszukiwania grafu, wykorzystywane w programie
+ */
+
 @Getter
 @Setter
 public abstract class StrategySearch {
