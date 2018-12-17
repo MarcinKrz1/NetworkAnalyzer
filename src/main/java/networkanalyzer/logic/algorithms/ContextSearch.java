@@ -9,15 +9,31 @@ import networkanalyzer.logic.algorithms.StrategySearch;
 
 import java.util.List;
 
+/**
+ * klasa, odpowiada za ustawienie trybu przeszukiwania sieci
+ */
+
 @Getter
 @Setter
 public class ContextSearch {
 
+    /**
+     * pole definiujace tryb przeszukiwanie grafu
+     */
     private StrategySearch strategySearch;
+    /**
+     * lista wierzcholkow klasy Node
+     */
     private List<Node> nodes;
+    /**
+     * lista polaczen klasy Connection
+     */
     private List<Connection> connections;
 
-
+    /**
+     * metoda uruchamiajaca przeszukiwanie sciezki, zwraca wyniki klasy Result
+     * @return
+     */
     public Result doSearch(){
         strategySearch.setNodes(nodes);
         strategySearch.setConnections(connections);
