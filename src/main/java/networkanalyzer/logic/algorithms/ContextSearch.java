@@ -15,7 +15,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ContextSearch {1
+public class ContextSearch {
 
     /**
      * pole definiujace tryb przeszukiwanie grafu
