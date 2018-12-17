@@ -108,7 +108,7 @@ class DfsSearchTest {
     }
 
     @Test
-    public void test5() {
+    public void test6() {
         newNode(1, "entry");
         newNode(2, "regular");
         newNode(3, "regular");
