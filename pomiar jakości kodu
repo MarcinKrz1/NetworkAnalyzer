@@ -1,7 +1,7 @@
 Cel: scharakteryzowanie projektu pod względem łatwości utrzymania oraz czytelności kodu
 
 Pytanie:
-Czy kod zawiera jest czytelny,posiada odpowiednią ilość komentarzy?
+Czy kod jest czytelny,posiada odpowiednią ilość komentarzy?
 
 Przyjęte metryki:
 LOC(wszystkie linie) 
@@ -9,6 +9,9 @@ ELOC(wszystkie za wyjątkiem pustych i komentarzy)
 CLOC(tylko linie z komentarzami)
 
 Wyniki:
-LOC =
-ELOC =
-CLOC =
+LOC = 1300
+ELOC = 963
+CLOC = 181
+
+Efektywne linie kodu stanowią 74% wszystkich lini.
+Komentarze stanowią 14% wszystkich lini kodu.
