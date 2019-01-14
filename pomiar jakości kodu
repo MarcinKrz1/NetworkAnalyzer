@@ -1,0 +1,14 @@
+Cel: scharakteryzowanie projektu pod względem łatwości utrzymania oraz czytelności kodu
+
+Pytanie:
+Czy kod zawiera jest czytelny,posiada odpowiednią ilość komentarzy?
+
+Przyjęte metryki:
+LOC(wszystkie linie) 
+ELOC(wszystkie za wyjątkiem pustych i komentarzy) 
+CLOC(tylko linie z komentarzami)
+
+Wyniki:
+LOC =
+ELOC =
+CLOC =
